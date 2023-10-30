@@ -1,7 +1,7 @@
 import streamlit as st 
 import plotly.express as px 
-import joblib as jo 
 import pandas as pd 
+import joblib as jo
 
 st.set_page_config(
         layout = 'wide',
@@ -9,7 +9,7 @@ st.set_page_config(
         page_icon= '📊'
 )
 
-df = pd.read_csv('bank-additional-full.csv' , sep=';')
+df = jo.load('Dataset.pkl')
 df['duration'] = df['duration'].apply(lambda x : x/60)
 def x(x):
     if x == 999 :

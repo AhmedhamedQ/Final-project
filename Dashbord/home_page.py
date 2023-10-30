@@ -2,9 +2,10 @@ import streamlit as st
 import pandas as pd 
 import requests as req
 from bs4 import BeautifulSoup
+import joblib as jo
 
 
-df = pd.read_csv("bank-additional-full.csv" , sep=';')
+df = jo.load('Dataset.pkl')
 df['duration'] = df['duration'].apply(lambda x : x/60)
 def x(x):
     if x == 999 :
