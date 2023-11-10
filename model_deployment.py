@@ -7,7 +7,7 @@ st.set_page_config(
     page_title = 'Campaign Prediction',
     page_icon = '🔮'
 )
-with open("styles.css") as f:
+with open("background.css") as f:
     st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 # import model
 model = joblib.load('Model.pkl')
