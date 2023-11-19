@@ -120,7 +120,7 @@ with col1:
     previous = st.slider('Number of previous contacts', min_value=0 , step = 1 , max_value=10 , value = 1)
     euribor3m = st.slider('Monthly Triple Interest Rate', min_value=0.0 , max_value=10.0 , step = 0.1)
     conf = st.slider('confidence interval' , min_value = -60.0 , step= 0.1 , max_value=-20.0 , value=-30.0)
-    price = st.slider('rate of change in commodity prices' , min_value = 90.0 , step= 0.1 , max_value=100.0 , value=1.0)
+    price = st.slider('rate of change in commodity prices' , min_value = 90.0 , step= 0.1 , max_value=100.0 , value=90.0)
     employed = st.slider('number of employee' , min_value=4900 , step=1,max_value=5250)
 
 with col3 :
