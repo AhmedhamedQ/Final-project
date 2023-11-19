@@ -15,11 +15,8 @@ st.set_page_config(
 
 col1 , col2 = st.columns([1,1])
 with col1 :
-
     image = Image.open('pridection.png')
     st.image(image, use_column_width=True)
-
-
 
 with col2 :
     # Display a welcome message
@@ -139,7 +136,8 @@ with col3 :
     day_of_week = st.selectbox('day' , ['mon', 'tue', 'wed', 'thu', 'fri'])
     poutcom = st.selectbox('result of the previous campaign' , ['nonexistent', 'failure', 'success'])
     month = st.selectbox('Month', ['dec', 'jan', 'feb','mar', 'apr', 'may','jun', 'jul','aug','sep','oct', 'nov'])
-    
+    image = Image.open('logo.jpg')
+    st.image(image)
 
 if st.button("Predict"):
     result = prediction(job, marital, education, housing, loan, contact,day_of_week, duration, campaign,pdays,previous,poutcom,emp,price,conf, euribor3m,employed,month,age)
