@@ -1,17 +1,61 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import time 
+from sklearn.base import BaseEstimator , TransformerMixin
+import pandas as pd
+from PIL import Image
 
+# Set page configration 
 st.set_page_config(
     layout="wide",
     page_title = 'Campaign Prediction',
     page_icon = '🔮'
 )
-with open("background.css") as f:
-    st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
-# import model
+
+col1 , col2 = st.columns([1,1])
+with col1 :
+
+    image = Image.open('pridection.png')
+    st.image(image, use_column_width=True)
+
+
+
+with col2 :
+    # Display a welcome message
+    st.write("# Welcome to My Streamlit App")
+    st.write('''### Hello, this is a machine learning classification model trained on real data.It is used to predict whether a client will subscribe to a specific term deposit campaign or not''')
+
+# Add a delay (in seconds)
+time.sleep(5)
+
+# Hide the welcome message
+st.empty()
+# class labelencoder
+class LabelEncoderTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, columns):
+        self.columns = columns
+    
+    def fit(self, X, y=None):
+        # Create a mapping dictionary for encoding
+        map_dict = {}
+        for column in self.columns:
+            map_dict[column] = {}
+            unique_values = [value for value in X[column].unique() if value != 'unknown']
+            for i, value in enumerate(unique_values):
+                map_dict[column][value] = i
+        
+        self.map_dict = map_dict
+        return self
+    
+    def transform(self, X):
+        X_encoded = X.copy()
+        for key in self.map_dict.keys():
+            X_encoded[key] = X_encoded[key].map(self.map_dict[key])
+        return X_encoded
+
+# import
 model = joblib.load('Model.pkl')
-# import columns name
 columns = joblib.load('columns.pkl')
 
 
